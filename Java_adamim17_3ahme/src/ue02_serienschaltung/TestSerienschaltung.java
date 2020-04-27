@@ -15,7 +15,15 @@ public class TestSerienschaltung
     public static void main (String[] args) 
     {
         final Serienschaltung serienschaltung = new Serienschaltung();
+        
         System.out.println("1: " + serienschaltung);
+        try {
+            serienschaltung.addWiderstand(-10);
+        } catch (InvalidResistorValueException er) 
+        {
+            System.out.println("Fehler aufgetreten " + er.getInvalidValue());
+        }
+            
         serienschaltung.addWiderstand(10);
         System.out.println("2: " + serienschaltung);
         serienschaltung.setStrom(0.5);
