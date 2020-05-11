@@ -22,7 +22,7 @@ public class TestSerienschaltung
         try 
         {
             System.out.println("1: " + serienschaltung);
-            serienschaltung.addWiderstand(10);
+            serienschaltung.addWiderstand(-10);
         }   catch (Exception ex) 
         {
             System.out.println("Fehler aufgetreten");
@@ -31,6 +31,7 @@ public class TestSerienschaltung
             {
                 double v = ((InvalidResistorValueException)ex).getInvalidValue();
             }  
+            throw new TestFailedException(ex);
         }
         System.out.println("2: " + serienschaltung);
         serienschaltung.setStrom(0.5);
@@ -38,7 +39,7 @@ public class TestSerienschaltung
         try 
         {
             System.out.println("3: " + serienschaltung);
-            serienschaltung.addWiderstand(-15);
+            serienschaltung.addWiderstand(15);
         }   catch (Exception ex) 
         {
             System.out.println("Fehler aufgetreten");
@@ -56,8 +57,17 @@ public class TestSerienschaltung
         }
         
         System.out.println("5: " + serienschaltung);
-        serienschaltung.setStrom(1);
+        serienschaltung.setStrom(0.5);
         System.out.println("6: " + serienschaltung);
+    }
+    
+    public static class TestFailedException extends RuntimeException 
+    {     
+        public TestFailedException (Throwable cause) 
+        {
+            super(cause);
+        }
+        
     }
     
 }
