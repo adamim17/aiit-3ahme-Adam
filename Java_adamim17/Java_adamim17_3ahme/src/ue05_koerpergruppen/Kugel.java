@@ -1,5 +1,6 @@
 package ue05_koerpergruppen;
 
+import java.util.Locale;
 /**
  *
  * @author mike
@@ -8,16 +9,29 @@ public class Kugel extends Koerper
 {
     private double r;
 
-    public Kugel(double r, double dichte) {
+    public Kugel (double r)
+    {
+        super(0.0);
+        if(r <= 0)
+        {
+            throw new IllegalArgumentException("invalid parameter r");
+        }
+        this.r = r;
+    }
+       
+    public Kugel(double r, double dichte) 
+    {
         super(dichte);
         this.r = r;
     }
 
-    public double getR() {
+    public double getR() 
+    {
         return r;
     }
 
-    public void setR(double r) {
+    public void setR(double r) 
+    {
         this.r = r;
     }
    
@@ -36,8 +50,7 @@ public class Kugel extends Koerper
 
     @Override
     public String toString () {
-        return "Kugel{" + "r=" + r + '}';
-    }
-    
+        return String.format(Locale.ENGLISH, "{\"r\":%e\"dichte\":%e", r, dichte);
+    }  
 }
 

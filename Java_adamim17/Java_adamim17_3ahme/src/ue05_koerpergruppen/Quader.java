@@ -1,5 +1,7 @@
 package ue05_koerpergruppen;
 
+import java.util.Locale;
+
 /**
  *
  * @author mike
@@ -10,12 +12,32 @@ public class Quader extends Koerper
      private double b;
      private double h;
      
-     public Quader(double a, double b, double h, double dichte)
+     public Quader(double a, double b, double h)
+     {
+         super(0.0);
+         if (a <= 0)
+         {
+             throw new IllegalArgumentException("invalid parameter a");
+         }
+         if (b <= 0)
+         {
+             throw new IllegalArgumentException("invalid parameter b");
+         }
+         if (h <= 0)
+         {
+             throw new IllegalArgumentException("invalid parameter h");
+         }
+         this.a = a;
+         this.b = b;
+         this.h = h;
+     }
+     
+     public Quader (double a, double b, double h, double dichte)
      {
          super(dichte);
          this.a = a;
          this.b = b;
-         this.h = h;
+         this.h = h;       
      }
      
     public double getA()
@@ -61,9 +83,9 @@ public class Quader extends Koerper
     }
 
     @Override
-    public String toString () {
-        return "Quader{" + "a=" + a + ", b=" + b + ", h=" + h + '}';
-    }
-    
+    public String toString () 
+    {
+        return String.format(Locale.ENGLISH, "{\"a\":%e,\"b\":%e,\"h\":%e,\"dichte\":%e}", a, b, h, dichte);
+    }    
 }
 

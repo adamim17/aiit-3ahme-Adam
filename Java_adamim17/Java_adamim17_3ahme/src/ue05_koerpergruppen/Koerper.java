@@ -6,12 +6,16 @@ package ue05_koerpergruppen;
  */
 public abstract class Koerper 
 {
-    private double dichte;
-    public double DICHTE_EICHE = 670;
-    public double DICHTE_BUCHE = 690;
+    protected double dichte;
+    public static final double DICHTE_EICHE = 670;
+    public static final double DICHTE_BUCHE = 690;
 
     public Koerper(double dichte) 
     {
+        if (dichte < 0)
+        {
+            throw new IllegalArgumentException("invalid parameter dichte");
+        }
         this.dichte = dichte;
     }
 

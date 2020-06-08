@@ -1,5 +1,7 @@
 package ue05_koerpergruppen;
 
+import java.util.Locale;
+
 /**
  *
  * @author mike
@@ -8,8 +10,18 @@ package ue05_koerpergruppen;
     public class Wuerfel extends Koerper
     {
     private double a;
+    
+    public Wuerfel (double a)
+    {
+        super(0.0);
+        if(a <= 0)
+        {
+            throw new IllegalArgumentException("invalid parameter a");
+        }
+        this.a = a;
+    }
 
-    public Wuerfel(double a, double dichte) 
+    public Wuerfel(double a, double dichte) throws IllegalArgumentException
     {
         super(dichte);
         this.a = a;
@@ -40,7 +52,7 @@ package ue05_koerpergruppen;
     @Override
     public String toString() 
     {
-        return "Wuerfel{" + "a=" + a + '}';
+        return String.format(Locale.ENGLISH, "{\"a\":%e,\"dichte\":%e}", a, dichte);
     }
 }
 
