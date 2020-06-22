@@ -6,17 +6,20 @@ package ue06;
  */
 public abstract class Component 
 {
-    String id;
-    private double value;
-    double voltage;
-    double current;
+    private final String id;
+    private final double value;
+    private double voltage;
+    private double current;
 
-    public Component (String id, double value, double voltage, double current) 
+    public Component (String id, double value) 
     {
         this.id = id;
         this.value = value;
-        this.voltage = voltage;
-        this.current = current;
+       
+        if(value < 0)
+        {
+            throw new IllegalArgumentException("der Wert ist kleiner 0");
+        }
     }
   
     public String getId () 
@@ -65,6 +68,7 @@ public abstract class Component
     }  
     
     public abstract String unit();
+    
     public abstract double energy();
 } 
 

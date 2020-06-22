@@ -5,28 +5,29 @@ package ue06;
  */
 public class Resistor extends Component
 {
-    public double value;
- 
     public Resistor (double value)
     {
-        super(id, 0.0, voltage, current);
-        this.value = value;
+        super("R:", value);
     }
 
-    public Resistor( String id, double value, double voltage, double current) 
+    public Resistor( String id, double value) 
     {
-        super(id, value, voltage, current);
-        this.value = value;
+        super(id, value);
+        
+        if(id.startsWith("R"))
+        {
+            throw new IllegalArgumentException("Fehler, ungültige ID");
+        }
     }
 
     public void setVoltage (double voltage) 
     {
-        this.voltage = voltage;
+        setVoltage(getCurrent() * getValue());
     }
 
     public void setCurrent (double current) 
     {
-        this.current = current;
+        setVoltage(getVoltage() / getValue());
     }
     
     @Override
@@ -35,6 +36,7 @@ public class Resistor extends Component
         return "U+2126";
     }
     
+    @Override
     public double energy ()
     {
         return 0;
